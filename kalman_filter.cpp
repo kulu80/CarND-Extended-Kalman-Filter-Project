@@ -29,7 +29,7 @@ void KalmanFilter::Update(const VectorXd &z) {
   VectorXd z_pred = H_ * x_;
   VectorXd y = z - z_pred;
   // Move Ht out to static computation
-  // MatrixXd Ht = H_.transpose();
+  MatrixXd H_laser_t_ = H_.transpose();
   MatrixXd S = H_ * P_ * H_laser_t_ + R_;
   MatrixXd Si = S.inverse();
   MatrixXd PHt = P_ * H_laser_t_;
